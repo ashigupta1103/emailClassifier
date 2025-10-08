@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import re
+import os
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
@@ -11,7 +12,8 @@ from sklearn.metrics import accuracy_score
 
 nltk.download('stopwords')
 
-df = pd.read_csv("enronSpamSubset.csv")
+csv_path = os.path.join(os.path.dirname(__file__), "enronSpamSubset.csv")
+df = pd.read_csv(csv_path)
 
 if 'Body' in df.columns and 'Label' in df.columns:
     df.rename(columns={'Body': 'text', 'Label': 'label'}, inplace=True)
